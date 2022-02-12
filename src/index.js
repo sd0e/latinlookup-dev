@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 
 ReactDOM.render(
-    <BrowserRouter style={{width: '100vw', height: '100vh'}}>
+    <BrowserRouter>
         <App />
     </BrowserRouter>,
     document.getElementById('root')

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import LeftColumn from '../components/ui/LeftColumn';
+import { Drawer } from '@mui/material';
+import { withStyles } from '@mui/styles';
 
+import LeftColumn from '../components/ui/LeftColumn';
 import Header from '../components/layout/Header';
 import classes from './Home.module.css';
-import { Drawer, withStyles } from '@material-ui/core';
 import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
 
@@ -55,7 +56,7 @@ export default function Home() {
 		if (awaitingCheck === false) awaitingCheck = window.setTimeout(checkScreenSize, 200);
 	});
 
-	const leftColumnStyles = { width: "15rem", padding: "2rem", borderRight: "2px solid rgba(242, 242, 242, 0.1)" };
+	const leftColumnStyles = { width: "15rem", padding: "2rem", borderRight: "2px solid rgba(242, 242, 242, 0.05)" };
 
 	const changeCurrentWord = word => {
 		wordsList.forEach((wordArray, idx) => {

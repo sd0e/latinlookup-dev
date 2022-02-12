@@ -1,4 +1,14 @@
 .searchBoxContainer {
 	padding: 0.5rem 1rem;
 	border-radius: 0.4rem;
+	display: flex;
+	align-items: center;
+	filter: opacity(0.6);
+}
+
+.searchBoxText {
+	font-weight: 600;
+	letter-spacing: 0.15rem;
+	color: rgba(242, 242, 242, 0.8);
+	margin-left: 1rem;
 }

@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -6,12 +6,9 @@ import Home from './pages/Home';
 function App() {
     return (
         <Layout>
-            <Switch>
-                <Route path="/" exact>
-                    <Home />
-                </Route>
-                <Redirect to="/" />
-            </Switch>
+            <Routes>
+                <Route path="/" exact element={<Home />} />
+            </Routes>
         </Layout>
     );
 }

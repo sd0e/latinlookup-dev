@@ -2,7 +2,7 @@
 	width: calc(100% - 4rem);
 	padding: 1.5rem 2rem;
 	height: 1.5rem;
-	border-bottom: 2px solid rgba(242, 242, 242, 0.1);
+	border-bottom: 2px solid rgba(242, 242, 242, 0.05);
 }
 
 .headerHamburger {

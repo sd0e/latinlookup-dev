@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconButton } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
-import { withStyles } from '@material-ui/styles';
+import { IconButton } from '@mui/material';
+import { Menu } from '@mui/icons-material';
+import { withStyles } from '@mui/styles';
 
 import classes from './Header.module.css';
 

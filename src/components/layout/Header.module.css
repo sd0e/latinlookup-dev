@@ -1,0 +1,36 @@
+.headerOuter {
+	width: calc(100% - 4rem);
+	padding: 1.5rem 2rem;
+	height: 1.5rem;
+	border-bottom: 2px solid rgba(242, 242, 242, 0.1);
+}
+
+.headerHamburger {
+	margin-right: 1.5rem;
+	line-height: 1.3rem;
+	vertical-align: middle;
+	color: rgba(242, 242, 242, 0.8);
+}
+
+.headerTitle {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #f2f2f2;
+	line-height: 1.3rem;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.versionHolder {
+	display: inline-block;
+	position: relative;
+}
+
+.versionName {
+	position: absolute;
+	font-weight: 400;
+	font-size: 0.9rem;
+	left: 0.1rem;
+	bottom: 0.5rem;
+	filter: opacity(0.4);
+}

@@ -1,0 +1,71 @@
+.homeOuter {
+	width: 100%;
+	height: calc(100% - 4.5rem - 2px);
+	border-collapse: collapse;
+}
+
+.mainPage {
+	padding: 3rem;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.currWord {
+	display: block;
+	font-family: 'Merriweather', serif;
+	color: #f2f2f2;
+	font-size: 1.6rem;
+	margin-bottom: 1.5rem;
+}
+
+.mainContentOuter {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.loadingOuter {
+	display: block;
+	width: 100%;
+	height: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	position: fixed;
+}
+
+.loadingInner {
+	position: relative;
+	width: 0px;
+	height: 4px;
+	left: 0px;
+	background: rgba(255, 255, 255, 0.2);
+	animation: 2s infinite linear;
+	animation-name: loadingAnimation;
+}
+
+@keyframes loadingAnimation {
+	0% {
+		left: 0px;
+		width: 0px;
+	}
+
+	25% {
+		left: 0px;
+		width: 39.0625%;
+	}
+
+	70% {
+		left: 78.125%;
+		width: 21.875%;
+	}
+
+	90% {
+		left: 100%;
+		width: 0px;
+	}
+}
+
+.wordInfoInner {
+	font-weight: 500;
+	filter: opacity(0.8) !important;
+}

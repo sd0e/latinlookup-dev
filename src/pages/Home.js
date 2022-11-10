@@ -96,7 +96,7 @@ export default function Home() {
 		if (!wordFound) {
 			const displayWord = word.includes('^') ? word.substring(1) : word;
 
-			XHRGetRequest(`https://crossrun.herokuapp.com/https://en.wiktionary.org/api/rest_v1/page/html/${displayWord}`, 'document').then(res => {
+			XHRGetRequest(`https://crossrun.onrender.com/https://en.wiktionary.org/api/rest_v1/page/html/${displayWord}`, 'document').then(res => {
 				window[displayWord[3]] = res;
 				let tempWordsList = wordsList;
 				wordsList.push([word, true, true, displayWord]);

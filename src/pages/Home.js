@@ -25,7 +25,7 @@ export default function Home() {
 
 	wordsList.forEach((wordList, idx) => {
 		if (window[wordList[3]] === undefined) {
-			XHRGetRequest(`https://crossrun.herokuapp.com/https://en.wiktionary.org/api/rest_v1/page/html/${wordList[3]}`, 'document').then(res => {
+			XHRGetRequest(`https://crossrun.onrender.com/https://en.wiktionary.org/api/rest_v1/page/html/${wordList[3]}`, 'document').then(res => {
 				window[wordList[3]] = res;
 				let tempWordsList = wordsList;
 				tempWordsList[idx][2] = true;

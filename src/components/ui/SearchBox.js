@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, createTheme, ThemeProvider, TextField } from '@mui/material';
+import { Button, createTheme, ThemeProvider } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import classes from './SearchBox.module.css';

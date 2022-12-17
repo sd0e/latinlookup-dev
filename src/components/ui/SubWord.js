@@ -39,9 +39,9 @@ export default function SubWord({ Word, Selected, Click }) {
 					<SubdirectoryArrowRight fontSize="small" style={{ marginRight: "0.5rem" }} id={id} />
 					{Word.substr(1)}
 				</div>
-				{/* <CustomIconButton aria-label="remove" size="small" id={id}>
+				<IconButton aria-label="remove" size="small" id={id}>
 					<RemoveCircleOutline fontSize="inherit" id={id} />
-				</CustomIconButton> */}
+				</IconButton>
 			</Button>
 		</ThemeProvider>
 	)

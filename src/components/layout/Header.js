@@ -1,7 +1,6 @@
 import React from 'react';
 import { createTheme, IconButton, ThemeProvider } from '@mui/material';
 import { Menu } from '@mui/icons-material';
-import { withStyles } from '@mui/styles';
 
 import classes from './Header.module.css';
 

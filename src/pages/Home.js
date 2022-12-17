@@ -113,14 +113,14 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 			});
 		}
 	}
-
+	
 	window['addWord'] = addWord;
 
 	useEffect(() => {
 		if (searchBoxOpen !== true && searchBoxOpen !== false && searchBoxOpen !== '' && typeof searchBoxOpen === 'string') {
 			const words = searchBoxOpen.split(' ');
 			words.forEach(word => {
-				addWord(word);
+				window['addWord'](word);
 			});
 		}
 	}, [searchBoxOpen]);

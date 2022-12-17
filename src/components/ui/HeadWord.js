@@ -36,9 +36,9 @@ export default function HeadWord({ Word, Selected, Click }) {
 		<ThemeProvider theme={theme}>
 			<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click}>
 				<span id={id}>{Word}</span>
-				{/* <CustomIconButton aria-label="remove" size="small" id={id}>
+				<IconButton aria-label="remove" size="small" id={id}>
 					<RemoveCircleOutline fontSize="inherit" id={id} />
-				</CustomIconButton> */}
+				</IconButton>
 			</Button>
 		</ThemeProvider>
 	)

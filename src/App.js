@@ -7,10 +7,6 @@ import Home from './pages/Home';
 function App() {
     const [searchBoxOpen, setSearchBoxOpen] = useState(false);
 
-    document.addEventListener('keydown', e => {
-        console.log(e.key);
-    });
-
     return (
         <Layout searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen}>
             <Routes>

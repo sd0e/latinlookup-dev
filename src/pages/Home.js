@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Drawer } from '@mui/material';
-import { withStyles } from '@mui/styles';
+import React, { useEffect, useState } from 'react';
+import { createTheme, Drawer, ThemeProvider } from '@mui/material';
 
 import LeftColumn from '../components/ui/LeftColumn';
 import Header from '../components/layout/Header';
@@ -8,17 +7,24 @@ import classes from './Home.module.css';
 import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
 
-const CustomDrawer = withStyles({
-	paper: {
-		background: "#111111",
-		padding: "1.5rem"
+const theme = createTheme({
+	components: {
+		MuiDrawer: {
+			styleOverrides: {
+				paper: {
+					background: "#111111",
+					padding: "1.5rem"
+				}
+			}
+		}
 	}
-})(props => <Drawer {...props} />);
+});
 
-export default function Home() {
+export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 	const [smallScreen, setSmallScreen] = useState(false);
 	const [drawerState, setDrawerState] = useState(false);
 	const [currentWord, setCurrentWord] = useState(['Enter a word', false, true, 'Enter a word']);
+	const [loading, setLoading] = useState(false);
 
 	// Format of wordsList: [storedWord (string), isCurrentWord (boolean), hasBeenLoaded (boolean), displayWord (string)]
 	const [wordsList, setWordsList] = useState([["duxit", false, false, "duxit"], ["capio", false, false, "capio"], ["^captus", false, false, "captus"], ["^capti", false, false, "capti"], ["grammar", false, false, "grammar"], ["do", false, false, "do"]]);
@@ -94,58 +100,76 @@ export default function Home() {
 		
 		// If the word isn't found, it adds the new word then switches to it
 		if (!wordFound) {
+			setLoading(true);
 			const displayWord = word.includes('^') ? word.substring(1) : word;
 
 			XHRGetRequest(`https://crossrun.onrender.com/https://en.wiktionary.org/api/rest_v1/page/html/${displayWord}`, 'document').then(res => {
-				window[displayWord[3]] = res;
+				window[displayWord] = res;
 				let tempWordsList = wordsList;
 				wordsList.push([word, true, true, displayWord]);
 				setWordsList(tempWordsList);
+				addWord(displayWord);
+				setLoading(false);
 			});
 		}
 	}
 
-	const ContextMenu = () => <LeftColumn ClickEvent={e => {
-		let word;
-		if (e.target.id.includes('word-')) {
-			word = e.target.id.split('word-')[1];
-		} else if (e.target.parentElement.id.includes('word-')) {
-			word = e.target.parentElement.id.split('word-')[1];
+	window['addWord'] = addWord;
+
+	useEffect(() => {
+		if (searchBoxOpen !== true && searchBoxOpen !== false && searchBoxOpen !== '' && typeof searchBoxOpen === 'string') {
+			const words = searchBoxOpen.split(' ');
+			words.forEach(word => {
+				addWord(word);
+			});
 		}
-		changeCurrentWord(word);
+	}, [searchBoxOpen]);
+
+	const ContextMenu = () => <LeftColumn ClickEvent={e => {
+		if (e) {
+			let word;
+			if (e.target.id.includes('word-')) {
+				word = e.target.id.split('word-')[1];
+			} else if (e.target.parentElement.id.includes('word-')) {
+				word = e.target.parentElement.id.split('word-')[1];
+			}
+			changeCurrentWord(word);
+		}
 		if (smallScreen) toggleDrawerState();
-	}} WordList={wordsList} Selected={currentWord} />
+	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} />
 
 	return (
-		<div style={{ height: '100%' }}>
-			<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} />
-			<CustomDrawer style={!smallScreen && { display: 'none' }} open={drawerState} anchor="left" onClose={toggleDrawerState}>
-				<ContextMenu />
-			</CustomDrawer>
-			<table className={classes.homeOuter}>
-				<tbody>
-					<tr>
-						<td style={ smallScreen ? { ...leftColumnStyles, display: 'none' } : leftColumnStyles }>
-							<ContextMenu />
-						</td>
-						<td>
-							<div className={classes.loadingOuter} style={currentWord[2] ? { display: 'none' } : null}>
-								<div className={classes.loadingInner}></div>
-							</div>
-							<div className={classes.mainContentOuter}>
-								<div className={classes.mainPage}>
-									<span className={classes.currWord}>{currentWord[3]}</span>
-									{currentWord[2] && currentWord[0] !== 'Enter a word' &&
-										<div className={classes.wordInfoInner}>
-											<FormatCurrentElements HTML={window[currentWord[3]]} />
-										</div>
-									}
+		<ThemeProvider theme={theme}>
+			<div style={{ height: '100%' }}>
+				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} />
+				{ smallScreen && <Drawer open={drawerState} anchor="left" onClose={toggleDrawerState}>
+					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} />
+				</Drawer> }
+				<table className={classes.homeOuter}>
+					<tbody>
+						<tr>
+							<td style={ smallScreen ? { ...leftColumnStyles, display: 'none' } : leftColumnStyles }>
+								<ContextMenu />
+							</td>
+							<td>
+								<div className={classes.loadingOuter} style={!loading ? { display: 'none' } : null}>
+									<div className={classes.loadingInner}></div>
 								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+								<div className={classes.mainContentOuter}>
+									<div className={classes.mainPage}>
+										<span className={classes.currWord}>{currentWord[3]}</span>
+										{currentWord[2] && currentWord[0] !== 'Enter a word' &&
+											<div className={classes.wordInfoInner}>
+												<FormatCurrentElements HTML={window[currentWord[3]]} />
+											</div>
+										}
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</ThemeProvider>
 	)
 }

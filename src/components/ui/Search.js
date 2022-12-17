@@ -1,6 +1,9 @@
-import { createTheme, TextField, ThemeProvider } from "@mui/material";
+import { Button, createTheme, TextField, ThemeProvider } from "@mui/material";
+import { useState } from "react";
 
-export default function Search() {
+export default function Search({ submit }) {
+    const [searchBoxContent, setSearchBoxContent] = useState('');
+
     const theme = createTheme({
         palette: {
             mode: 'dark',
@@ -21,7 +24,8 @@ export default function Search() {
 
     return (
         <ThemeProvider theme={theme}>
-            <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" />
+            <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
+            <Button onClick={() => submit(searchBoxContent)}>Enter</Button>
         </ThemeProvider>
     )
 }

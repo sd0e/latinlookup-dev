@@ -35,6 +35,17 @@ export default function FormatCurrentElements({ HTML }) {
 				// `<span style="font-family: 'Merriweather'; font-weight: 900; font-size: 1.2rem; filter: opacity(0.9);">${subheading}</span>`;
 			}
 		});
+
+		if (currElement.tagName.toLowerCase() === 'a') {
+			if (
+				currElement.parentElement.lang.toLowerCase() === 'la'
+			) {
+				currElement.href = `javascript:window['addWord']('^${currElement.title}')`;
+				currElement.style.color = '#6190E6';
+			} else {
+				currElement.removeAttribute('href');
+			}
+		}
 	}
 
 	// Set the formattedHTML to the string value of the HTML

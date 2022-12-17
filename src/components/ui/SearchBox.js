@@ -19,10 +19,13 @@ const theme = createTheme({
 	},
 });
 
-export default function SearchBox() {
+export default function SearchBox({ setSearchBoxOpen, onClick }) {
 	return (
 		<ThemeProvider theme={theme}>
-			<Button fullWidth>
+			<Button fullWidth onClick={() => {
+				onClick();
+				setSearchBoxOpen(true);
+			}}>
 				<div className={classes.searchBoxContainer}>
 					<Search style={{ color: 'rgba(242, 242, 242, 0.8)' }} />
 					<span className={classes.searchBoxText}>Search</span>

@@ -7,3 +7,12 @@
 	width: 100%;
 	margin-top: 1.5rem;
 }
+
+.mobileLeftColumnHolderHeader {
+	width: 100%;
+	display: flex;
+}
+
+.iconButtonIcon {
+	color: rgba(242, 242, 242, 0.8);
+}

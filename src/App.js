@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+import SwitchColorTheme from './scripts/SwitchColorTheme';
 
 function App() {
     const [searchBoxOpen, setSearchBoxOpen] = useState(false);
     const [aboutBoxOpen, setAboutBoxOpen] = useState(false);
     const [refresh, setRefresh] = useState(false);
+
+    useEffect(() => {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            SwitchColorTheme('DARK');
+        }
+    }, []);
 
     return (
         <Layout searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} aboutBoxOpen={aboutBoxOpen} setAboutBoxOpen={setAboutBoxOpen}>

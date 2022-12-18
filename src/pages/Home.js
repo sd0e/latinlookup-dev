@@ -8,19 +8,6 @@ import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
 import GetColorVariable from '../scripts/GetColorVariable';
 
-const theme = createTheme({
-	components: {
-		MuiDrawer: {
-			styleOverrides: {
-				paper: {
-					background: GetColorVariable(document, '--bg'),
-					padding: "1.5rem"
-				}
-			}
-		}
-	}
-});
-
 export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen, setRefresh, refresh }) {
 	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
 
@@ -31,6 +18,19 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 
 	// Format of wordsList: [storedWord (string), isCurrentWord (boolean), hasBeenLoaded (boolean), displayWord (string)]
 	const [wordsList, setWordsList] = useState([]);
+
+	const theme = createTheme({
+		components: {
+			MuiDrawer: {
+				styleOverrides: {
+					paper: {
+						background: GetColorVariable(document, '--bg'),
+						padding: "1.5rem"
+					}
+				}
+			}
+		}
+	});
 
 	wordsList.forEach((wordList, idx) => {
 		if (window[wordList[3]] === undefined) {

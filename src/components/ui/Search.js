@@ -45,7 +45,7 @@ export default function Search({ submit, setSearchBoxOpen }) {
                         Search
                     </span>
                 </span>
-                <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
+                <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" autoCapitalize="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
                 <div className={classes.buttonContainer}>
                     <Stack direction="row" spacing={2}>
                         <Button onClick={() => submit(searchBoxContent)} variant="outlined">Lookup</Button>

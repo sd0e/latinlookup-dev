@@ -1,3 +1,4 @@
 {
-    "VERSION_NUMBER": "α"
+    "VERSION_NUMBER": "α",
+    "LONG_DESCRIPTION": "Latin Lookup is a site which uses the Wiktionary API to allow you to browse the definition of Latin words with ease."
 }

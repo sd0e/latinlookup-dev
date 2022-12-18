@@ -1,5 +1,5 @@
 .aboutOuter {
-    min-width: 20rem;
+    width: 20rem;
 }
 
 .aboutName {
@@ -11,6 +11,7 @@
     display: block;
     font-weight: 400;
     margin-top: 0.2rem;
+    margin-bottom: 2rem;
 }
 
 .aboutVersionNumber {
@@ -18,4 +19,21 @@
     margin-left: 0.2rem;
     color: var(--muted-text);
     filter: opacity(0.8);
+}
+
+.aboutDescription {
+    display: block;
+    font-weight: 400;
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    margin: 1rem 0rem;
+}
+
+.aboutLinkStyle {
+	color: var(--muted-text);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	font-weight: 400;
+	font-size: 0.9rem;
+	cursor: pointer;
 }

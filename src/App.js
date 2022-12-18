@@ -13,6 +13,7 @@ function App() {
     useEffect(() => {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             SwitchColorTheme('DARK');
+            setRefresh(Math.random());
         }
     }, []);
 

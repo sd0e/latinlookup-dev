@@ -1,14 +1,15 @@
 .homeOuter {
-	width: 100%;
+	width: calc(100vw - 2px);
 	height: calc(100% - 4.5rem - 2px);
 	border-collapse: collapse;
+	overflow: hidden;
 }
 
 .mainPage {
-	padding: 3rem;
 	position: relative;
 	top: 0;
 	left: 0;
+	overflow: hidden;
 }
 
 .currWord {
@@ -17,12 +18,15 @@
 	color: #f2f2f2;
 	font-size: 1.6rem;
 	margin-bottom: 1.5rem;
+	padding: 3rem 0rem 0rem 3rem;
+	line-height: 2rem;
+	width: calc(100% - 3rem);
 }
 
 .mainContentOuter {
 	width: 100%;
 	height: 100%;
-	overflow-y: auto;
+	overflow: hidden;
 }
 
 .loadingOuter {
@@ -68,4 +72,7 @@
 .wordInfoInner {
 	font-weight: 500;
 	filter: opacity(0.8) !important;
+	overflow: auto;
+	padding: 0rem 3rem 3rem 3rem;
+	height: calc(100vh - 14rem - 2px);
 }

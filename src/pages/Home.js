@@ -49,9 +49,9 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen 
 
 	const checkScreenSize = () => {
 		lastUpdate = new Date().getTime();
-		if (window.innerWidth < 700 && !smallScreen) {
+		if (window.innerWidth < 950 && !smallScreen) {
 			setSmallScreen(true);
-		} else if (window.innerWidth >= 700 && smallScreen) {
+		} else if (window.innerWidth >= 950 && smallScreen) {
 			setSmallScreen(false);
 		};
 	}
@@ -184,7 +184,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen 
 									<div className={classes.mainPage}>
 										<span className={classes.currWord}>{currentWord[3]}</span>
 										{currentWord[2] && currentWord[0] !== 'Enter a word' &&
-											<div className={classes.wordInfoInner}>
+											<div className={classes.wordInfoInner} style={{ maxWidth: smallScreen ? 'calc(100vw - 6rem)' : 'calc(100vw - 21rem)' }}>
 												<FormatCurrentElements HTML={window[currentWord[3]]} />
 											</div>
 										}

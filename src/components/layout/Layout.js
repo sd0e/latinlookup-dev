@@ -2,10 +2,15 @@ import React from 'react';
 
 import classes from './Layout.module.css';
 import Search from '../ui/Search';
+import About from './About';
 
-export default function Layout({ children, searchBoxOpen, setSearchBoxOpen }) {
+export default function Layout({ children, searchBoxOpen, setSearchBoxOpen, aboutBoxOpen, setAboutBoxOpen }) {	
 	const searchBoxOuterClick = (e) => {
 		if (e.target === e.currentTarget) setSearchBoxOpen(false);
+	}
+
+	const aboutBoxOuterClick = (e) => {
+		if (e.target === e.currentTarget) setAboutBoxOpen(false);
 	}
 
 	return (
@@ -13,6 +18,11 @@ export default function Layout({ children, searchBoxOpen, setSearchBoxOpen }) {
 			{ searchBoxOpen === true ? <div className={classes.searchOuter} onClick={searchBoxOuterClick}>
 				<div className={classes.searchInner}>
 					<Search submit={setSearchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} />
+				</div>
+			</div> : null }
+			{ aboutBoxOpen === true ? <div className={classes.searchOuter} onClick={aboutBoxOuterClick}>
+				<div className={classes.searchInner}>
+					<About setAboutBoxOpen={setAboutBoxOpen} />
 				</div>
 			</div> : null }
 			<main>

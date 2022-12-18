@@ -7,7 +7,7 @@ import SearchBox from './SearchBox';
 import HeadWord from './HeadWord';
 import SubWord from './SubWord';
 
-export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord }) {
+export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord, setAboutBoxOpen }) {
 	const theme = createTheme({
 		components: {
 			MuiIconButton: {
@@ -29,23 +29,35 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 		}
 	});
 
+	const openAboutBox = () => {
+		setAboutBoxOpen(true);
+		ClickEvent();
+	}
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={classes.leftColumn} style={{ paddingRight: smallScreen ? '2rem' : '0rem' }}>
-				{ smallScreen ? <div className={classes.mobileLeftColumnHolderHeader}>
-					<SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} />
-					<IconButton onClick={ClickEvent} className={classes.mobileExitNav}><Close className={classes.iconButtonIcon} /></IconButton>
-				</div> : <SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} /> }
-				<div className={classes.wordList}>
-					{WordList.map(word => {
-						const selected = word[1];
-						word = word[0];
-						if (!word.includes('^')) {
-							return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
-						} else {
-							return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
-						}
-					}) }
+				<div className={classes.leftColumnContentDivider}>
+					<div>
+						{ smallScreen ? <div className={classes.mobileLeftColumnHolderHeader}>
+							<SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} />
+							<IconButton onClick={ClickEvent} className={classes.mobileExitNav}><Close className={classes.iconButtonIcon} /></IconButton>
+						</div> : <SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} /> }
+						<div className={classes.wordList}>
+							{WordList.map(word => {
+								const selected = word[1];
+								word = word[0];
+								if (!word.includes('^')) {
+									return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
+								} else {
+									return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
+								}
+							}) }
+						</div>
+					</div>
+					<div>
+						<a onClick={openAboutBox} className={classes.bottomItems}>About</a>
+					</div>
 				</div>
 			</div>
 		</ThemeProvider>

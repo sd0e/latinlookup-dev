@@ -1,6 +1,6 @@
 .leftColumn {
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 3rem);
 }
 
 .wordList {
@@ -20,4 +20,20 @@
 
 .mobileExitNav {
 	margin-right: 1rem;
+}
+
+.leftColumnContentDivider {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bottomItems {
+	color: rgba(242, 242, 242, 0.8);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	font-weight: 400;
+	font-size: 0.8rem;
+	cursor: pointer;
 }

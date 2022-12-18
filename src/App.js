@@ -6,11 +6,12 @@ import Home from './pages/Home';
 
 function App() {
     const [searchBoxOpen, setSearchBoxOpen] = useState(false);
+    const [aboutBoxOpen, setAboutBoxOpen] = useState(false);
 
     return (
-        <Layout searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen}>
+        <Layout searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} aboutBoxOpen={aboutBoxOpen} setAboutBoxOpen={setAboutBoxOpen}>
             <Routes>
-                <Route path="/" exact element={<Home searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} />} />
+                <Route path="/" exact element={<Home searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} setAboutBoxOpen={setAboutBoxOpen} />} />
             </Routes>
         </Layout>
     );

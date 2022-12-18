@@ -20,7 +20,7 @@ const theme = createTheme({
 	}
 });
 
-export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
+export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen }) {
 	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
 
 	const [smallScreen, setSmallScreen] = useState(false);
@@ -64,7 +64,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 		if (awaitingCheck === false) awaitingCheck = window.setTimeout(checkScreenSize, 200);
 	});
 
-	const leftColumnStyles = { width: "15rem", padding: "2rem", borderRight: "2px solid rgba(242, 242, 242, 0.05)" };
+	const leftColumnStyles = { width: "15rem", padding: "0rem 2rem", borderRight: "2px solid rgba(242, 242, 242, 0.05)" };
 
 	const changeCurrentWord = word => {
 		wordsList.forEach((wordArray, idx) => {
@@ -161,7 +161,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 			changeCurrentWord(word);
 		}
 		if (smallScreen) toggleDrawerState();
-	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
+	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} setAboutBoxOpen={setAboutBoxOpen} />
 
 	return (
 		<ThemeProvider theme={theme}>

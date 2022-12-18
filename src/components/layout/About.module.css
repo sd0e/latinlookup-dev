@@ -1,0 +1,20 @@
+.aboutOuter {
+    min-width: 20rem;
+}
+
+.aboutName {
+    font-size: 1.2rem;
+    display: block;
+}
+
+.aboutVersionInfo {
+    display: block;
+    font-weight: 400;
+    margin-top: 0.2rem;
+}
+
+.aboutVersionNumber {
+    display: inline-block;
+    margin-left: 0.2rem;
+    color: rgba(255, 255, 255, 0.6);
+}

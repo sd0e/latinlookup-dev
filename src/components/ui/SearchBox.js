@@ -3,7 +3,6 @@ import { Button, createTheme, ThemeProvider } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import classes from './SearchBox.module.css';
-import GetColorVariable from '../../scripts/GetColorVariable';
 import GetColorMode from '../../scripts/GetColorMode';
 
 const theme = createTheme({

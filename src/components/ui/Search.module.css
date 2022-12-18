@@ -1,0 +1,27 @@
+.searchTitle {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    filter: opacity(0.4);
+    margin-bottom: 2rem;
+    padding: 1rem 0rem;
+    justify-content: center;
+}
+
+.searchTitleInner {
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    margin-right: 0.5rem;
+}
+
+.buttonContainer {
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0rem;
+}

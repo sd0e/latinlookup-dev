@@ -13,8 +13,8 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 			MuiIconButton: {
 				styleOverrides: {
 					root: {
-						width: "1.3rem",
-						height: "1.3rem",
+						width: "2rem",
+						height: "2rem",
 						lineHeight: "1.3rem",
 						verticalAlign: "middle",
 						cursor: "pointer",
@@ -31,10 +31,10 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={classes.leftColumn}>
+			<div className={classes.leftColumn} style={{ paddingRight: smallScreen ? '2rem' : '0rem' }}>
 				{ smallScreen ? <div className={classes.mobileLeftColumnHolderHeader}>
 					<SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} />
-					<IconButton onClick={ClickEvent}><Close className={classes.iconButtonIcon} /></IconButton>
+					<IconButton onClick={ClickEvent} className={classes.mobileExitNav}><Close className={classes.iconButtonIcon} /></IconButton>
 				</div> : <SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} /> }
 				<div className={classes.wordList}>
 					{WordList.map(word => {

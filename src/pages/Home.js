@@ -29,7 +29,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 	const [loading, setLoading] = useState(false);
 
 	// Format of wordsList: [storedWord (string), isCurrentWord (boolean), hasBeenLoaded (boolean), displayWord (string)]
-	const [wordsList, setWordsList] = useState([["duxit", false, false, "duxit"], ["capio", false, false, "capio"], ["^captus", false, false, "captus"], ["^capti", false, false, "capti"], ["grammar", false, false, "grammar"], ["do", false, false, "do"]]);
+	const [wordsList, setWordsList] = useState([]);
 
 	wordsList.forEach((wordList, idx) => {
 		if (window[wordList[3]] === undefined) {
@@ -150,8 +150,6 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 		else setCurrentWord(defaultWordState);
 	}
 
-	console.log(currentWord);
-
 	const ContextMenu = () => <LeftColumn ClickEvent={e => {
 		if (e) {
 			let word;
@@ -168,7 +166,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ height: '100%' }}>
-				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} />
+				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} setSearchBoxOpen={setSearchBoxOpen} />
 				{ smallScreen && <Drawer open={drawerState} anchor="left" onClose={toggleDrawerState}>
 					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
 				</Drawer> }

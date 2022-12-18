@@ -1,6 +1,7 @@
 import { SearchOutlined } from "@mui/icons-material";
 import { Button, createTheme, Stack, TextField, ThemeProvider } from "@mui/material";
 import { useState } from "react";
+import GetColorMode from "../../scripts/GetColorMode";
 
 import classes from './Search.module.css';
 
@@ -9,7 +10,7 @@ export default function Search({ submit, setSearchBoxOpen }) {
 
     const theme = createTheme({
         palette: {
-            mode: 'dark',
+            mode: GetColorMode(document),
         },
         typography: {
             fontFamily: 'Inter,sans-serif',

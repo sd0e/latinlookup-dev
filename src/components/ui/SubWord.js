@@ -2,9 +2,12 @@ import React from 'react';
 import { Button, IconButton, ThemeProvider, createTheme } from '@mui/material';
 import { RemoveCircleOutline, SubdirectoryArrowRight } from '@mui/icons-material';
 
+import GetColorVariable from '../../scripts/GetColorVariable';
+import GetColorMode from '../../scripts/GetColorMode';
+
 const theme = createTheme({
 	palette: {
-		mode: 'dark',
+		mode: GetColorMode(document),
 	},
 	components: {
 		MuiButton: {
@@ -16,7 +19,7 @@ const theme = createTheme({
 					border: "none",
 					transition: "0.1s ease-in-out",
 					cursor: "pointer",
-					color: "rgba(242, 242, 242, 0.8)",
+					color: GetColorVariable(document, '--muted-text'),
 					justifyContent: "space-between",
 					marginBottom: "0.5rem",
 					textTransform: "uppercase",

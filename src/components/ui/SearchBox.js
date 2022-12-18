@@ -3,10 +3,12 @@ import { Button, createTheme, ThemeProvider } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 import classes from './SearchBox.module.css';
+import GetColorVariable from '../../scripts/GetColorVariable';
+import GetColorMode from '../../scripts/GetColorMode';
 
 const theme = createTheme({
 	palette: {
-		type: "dark"
+		type: GetColorMode(document)
 	},
 	components: {
 		MuiButton: {
@@ -27,7 +29,7 @@ export default function SearchBox({ setSearchBoxOpen, onClick }) {
 				setSearchBoxOpen(true);
 			}}>
 				<div className={classes.searchBoxContainer}>
-					<Search style={{ color: 'rgba(242, 242, 242, 0.8)' }} />
+					<Search className={classes.searchIcon} />
 					<span className={classes.searchBoxText}>Search</span>
 				</div>
 			</Button>

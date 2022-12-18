@@ -6,13 +6,14 @@ import Header from '../components/layout/Header';
 import classes from './Home.module.css';
 import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
+import GetColorVariable from '../scripts/GetColorVariable';
 
 const theme = createTheme({
 	components: {
 		MuiDrawer: {
 			styleOverrides: {
 				paper: {
-					background: "#111111",
+					background: GetColorVariable(document, '--bg'),
 					padding: "1.5rem"
 				}
 			}
@@ -20,7 +21,7 @@ const theme = createTheme({
 	}
 });
 
-export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen }) {
+export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen, setRefresh, refresh }) {
 	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
 
 	const [smallScreen, setSmallScreen] = useState(false);
@@ -64,7 +65,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen 
 		if (awaitingCheck === false) awaitingCheck = window.setTimeout(checkScreenSize, 200);
 	});
 
-	const leftColumnStyles = { width: "15rem", padding: "0rem 2rem", borderRight: "2px solid rgba(242, 242, 242, 0.05)" };
+	const leftColumnStyles = { width: "15rem", padding: "0rem 2rem", borderRight: `2px solid ${GetColorVariable(document, '--border')}` };
 
 	const changeCurrentWord = word => {
 		wordsList.forEach((wordArray, idx) => {
@@ -166,7 +167,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen 
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ height: '100%' }}>
-				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} setSearchBoxOpen={setSearchBoxOpen} />
+				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} setSearchBoxOpen={setSearchBoxOpen} setRefresh={setRefresh} refresh={refresh} />
 				{ smallScreen && <Drawer open={drawerState} anchor="left" onClose={toggleDrawerState}>
 					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
 				</Drawer> }

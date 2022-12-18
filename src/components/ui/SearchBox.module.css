@@ -9,6 +9,10 @@
 .searchBoxText {
 	font-weight: 600;
 	letter-spacing: 0.15rem;
-	color: rgba(242, 242, 242, 0.8);
+	color: var(--muted-text);
 	margin-left: 1rem;
+}
+
+.searchIcon {
+	color: var(--muted-text);
 }

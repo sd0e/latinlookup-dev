@@ -21,7 +21,7 @@ main {
 }
 
 .searchInner {
-	background: #111111;
+	background: var(--bg);
 	max-width: calc(100% - 5rem);
 	max-height: calc(100% - 5rem);
 	border-radius: 1rem;

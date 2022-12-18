@@ -16,5 +16,6 @@
 .aboutVersionNumber {
     display: inline-block;
     margin-left: 0.2rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--muted-text);
+    filter: opacity(0.8);
 }

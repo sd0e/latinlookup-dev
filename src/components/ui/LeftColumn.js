@@ -6,6 +6,8 @@ import classes from './LeftColumn.module.css';
 import SearchBox from './SearchBox';
 import HeadWord from './HeadWord';
 import SubWord from './SubWord';
+import GetColorVariable from '../../scripts/GetColorVariable';
+import GetColorMode from '../../scripts/GetColorMode';
 
 export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord, setAboutBoxOpen }) {
 	const theme = createTheme({
@@ -18,14 +20,14 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 						lineHeight: "1.3rem",
 						verticalAlign: "middle",
 						cursor: "pointer",
-						color: "rgba(242, 242, 242, 0.8)",
+						color: GetColorVariable(document, '--muted-text'),
 						marginLeft: "1.5rem",
 					}
 				}
 			}
 		},
 		palette: {
-			mode: 'dark',
+			mode: GetColorMode(document),
 		}
 	});
 

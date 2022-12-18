@@ -15,7 +15,7 @@
 }
 
 .iconButtonIcon {
-	color: rgba(242, 242, 242, 0.8);
+	color: var(--muted-text);
 }
 
 .mobileExitNav {
@@ -30,7 +30,7 @@
 }
 
 .bottomItems {
-	color: rgba(242, 242, 242, 0.8);
+	color: var(--muted-text);
 	text-decoration: underline;
 	text-underline-offset: 2px;
 	font-weight: 400;

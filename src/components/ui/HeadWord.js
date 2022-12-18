@@ -19,27 +19,38 @@ const theme = createTheme({
 					color: "rgba(242, 242, 242, 0.8)",
 					justifyContent: "space-between",
 					marginBottom: "0.5rem",
+					marginRight: "0.5rem",
 					textTransform: "uppercase",
 					letterSpacing: "0.15rem",
 					fontFamily: "Inter, sans-serif",
 					fontWeight: 600,
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+		MuiIconButton: {
+			styleOverrides: {
+				root: {
+					width: '2rem',
+					height: '2rem'
+				},
+			},
+		},
+	},
 });
 
-export default function HeadWord({ Word, Selected, Click }) {
+export default function HeadWord({ Word, Selected, Click, removeWord }) {
 	const id = `word-${Word}`;
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click}>
-				<span id={id}>{Word}</span>
-				<IconButton aria-label="remove" size="small" id={id}>
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click}>
+					<span id={id}>{Word}</span>
+				</Button>
+				<IconButton aria-label="remove" size="small" id={id} onClick={() => removeWord(Word)}>
 					<RemoveCircleOutline fontSize="inherit" id={id} />
 				</IconButton>
-			</Button>
+			</div>
 		</ThemeProvider>
 	)
 }

@@ -23,26 +23,36 @@ const theme = createTheme({
 					letterSpacing: "0.15rem",
 					fontFamily: "Inter, sans-serif",
 					fontWeight: 600,
-				}
-			}
-		}
-	}
+				},
+			},
+		},
+		MuiIconButton: {
+			styleOverrides: {
+				root: {
+					width: '2rem',
+					height: '2rem'
+				},
+			},
+		},
+	},
 });
 
-export default function SubWord({ Word, Selected, Click }) {
+export default function SubWord({ Word, Selected, Click, removeWord }) {
 	const id = `word-${Word}`;
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click}>
-				<div style={{ display: "flex", alignItems: "center" }} id={id}>
-					<SubdirectoryArrowRight fontSize="small" style={{ marginRight: "0.5rem" }} id={id} />
-					{Word.substr(1)}
-				</div>
-				<IconButton aria-label="remove" size="small" id={id}>
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click} fullWidth>
+					<div style={{ display: "flex", alignItems: "center" }} id={id}>
+						<SubdirectoryArrowRight fontSize="small" style={{ marginRight: "0.5rem" }} id={id} />
+						{Word.substr(1)}
+					</div>
+				</Button>
+				<IconButton aria-label="remove" size="small" id={id} onClick={() => removeWord(Word)}>
 					<RemoveCircleOutline fontSize="inherit" id={id} />
 				</IconButton>
-			</Button>
+			</div>
 		</ThemeProvider>
 	)
 }

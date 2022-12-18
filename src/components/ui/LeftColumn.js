@@ -7,7 +7,7 @@ import SearchBox from './SearchBox';
 import HeadWord from './HeadWord';
 import SubWord from './SubWord';
 
-export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen }) {
+export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord }) {
 	const theme = createTheme({
 		components: {
 			MuiIconButton: {
@@ -41,9 +41,9 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 						const selected = word[1];
 						word = word[0];
 						if (!word.includes('^')) {
-							return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} />
+							return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
 						} else {
-							return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} />
+							return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
 						}
 					}) }
 				</div>

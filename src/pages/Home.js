@@ -21,9 +21,11 @@ const theme = createTheme({
 });
 
 export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
+	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
+
 	const [smallScreen, setSmallScreen] = useState(false);
 	const [drawerState, setDrawerState] = useState(false);
-	const [currentWord, setCurrentWord] = useState(['Enter a word', false, true, 'Enter a word']);
+	const [currentWord, setCurrentWord] = useState(defaultWordState);
 	const [loading, setLoading] = useState(false);
 
 	// Format of wordsList: [storedWord (string), isCurrentWord (boolean), hasBeenLoaded (boolean), displayWord (string)]
@@ -125,6 +127,31 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 		}
 	}, [searchBoxOpen]);
 
+	const removeWord = word => {
+		let tempWordsList = wordsList;
+
+		let wordInfo = null;
+		let wordIndex = null;
+
+		tempWordsList.forEach((wordListWordInfo, idx) => {
+			if (wordListWordInfo[0] === word) {
+				wordInfo = wordListWordInfo;
+				wordIndex = idx;
+			}
+		});
+
+		if (wordInfo !== null) tempWordsList = tempWordsList.filter(item => item !== wordInfo);
+		console.log(defaultWordState);
+
+		setWordsList(tempWordsList);
+
+		if (tempWordsList !== [] && wordIndex !== 0) setCurrentWord(tempWordsList[wordIndex - 1])
+		else if (tempWordsList.length !== 0) setCurrentWord(tempWordsList[0])
+		else setCurrentWord(defaultWordState);
+	}
+
+	console.log(currentWord);
+
 	const ContextMenu = () => <LeftColumn ClickEvent={e => {
 		if (e) {
 			let word;
@@ -136,21 +163,21 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen }) {
 			changeCurrentWord(word);
 		}
 		if (smallScreen) toggleDrawerState();
-	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} />
+	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
 
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ height: '100%' }}>
 				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} />
 				{ smallScreen && <Drawer open={drawerState} anchor="left" onClose={toggleDrawerState}>
-					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} />
+					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
 				</Drawer> }
 				<table className={classes.homeOuter}>
 					<tbody>
 						<tr>
-							<td style={ smallScreen ? { ...leftColumnStyles, display: 'none' } : leftColumnStyles }>
-								<ContextMenu />
-							</td>
+							{ !smallScreen ? <td style={ leftColumnStyles }>
+								<ContextMenu removeWord={removeWord} />
+							</td> : null }
 							<td>
 								<div className={classes.loadingOuter} style={!loading ? { display: 'none' } : null}>
 									<div className={classes.loadingInner}></div>

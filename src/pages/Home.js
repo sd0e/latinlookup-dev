@@ -139,7 +139,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 				navigate('/', { replace: true });
 			}
 		}
-	}, []);
+	}, [navigate]);
 
 	const removeWord = word => {
 		let tempWordsList = wordsList;

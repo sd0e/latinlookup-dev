@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createTheme, Drawer, ThemeProvider } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import LeftColumn from '../components/ui/LeftColumn';
 import Header from '../components/layout/Header';
@@ -18,6 +19,8 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 
 	// Format of wordsList: [storedWord (string), isCurrentWord (boolean), hasBeenLoaded (boolean), displayWord (string)]
 	const [wordsList, setWordsList] = useState([]);
+
+	let navigate = useNavigate();
 
 	const theme = createTheme({
 		components: {
@@ -127,6 +130,16 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 			});
 		}
 	}, [searchBoxOpen]);
+
+	useEffect(() => {
+		if (window.location.pathname !== '/') {
+			const splitPathname = window.location.pathname.split('/');
+			if (splitPathname.length === 2) {
+				window['addWord'](splitPathname[1]);
+				navigate('/', { replace: true });
+			}
+		}
+	}, []);
 
 	const removeWord = word => {
 		let tempWordsList = wordsList;

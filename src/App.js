@@ -20,7 +20,7 @@ function App() {
     return (
         <Layout searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} aboutBoxOpen={aboutBoxOpen} setAboutBoxOpen={setAboutBoxOpen}>
             <Routes>
-                <Route path="/" exact element={<Home searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} setAboutBoxOpen={setAboutBoxOpen} setRefresh={setRefresh} refresh={refresh} />} />
+                <Route path="*" exact element={<Home searchBoxOpen={searchBoxOpen} setSearchBoxOpen={setSearchBoxOpen} setAboutBoxOpen={setAboutBoxOpen} setRefresh={setRefresh} refresh={refresh} />} />
             </Routes>
         </Layout>
     );

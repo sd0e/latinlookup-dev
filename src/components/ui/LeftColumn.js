@@ -56,7 +56,7 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 						</div>
 					</div>
 					<div>
-						<a onClick={openAboutBox} className={classes.bottomItems}>About</a>
+						<button onClick={openAboutBox} className={classes.bottomItems}>About</button>
 					</div>
 				</div>
 			</div>

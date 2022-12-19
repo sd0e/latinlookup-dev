@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createTheme, Drawer, ThemeProvider } from '@mui/material';
+import { createTheme, SwipeableDrawer, ThemeProvider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import LeftColumn from '../components/ui/LeftColumn';
@@ -47,7 +47,10 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 		};
 	});
 
-	const toggleDrawerState = () => setDrawerState(!drawerState);
+	const toggleDrawerState = (val = !drawerState) => {
+		setDrawerState(val);
+		console.log(val);
+	}
 
 	var lastUpdate = new Date().getTime();
 	var awaitingCheck = false;
@@ -209,16 +212,16 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 			}
 			changeCurrentWord(word);
 		}
-		if (smallScreen) toggleDrawerState();
+		if (smallScreen) toggleDrawerState(false);
 	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} setAboutBoxOpen={setAboutBoxOpen} refresh={refresh} />
 
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ height: '100%' }}>
-				<Header Hamburger={smallScreen} HamburgerClickEvent={toggleDrawerState} setSearchBoxOpen={setSearchBoxOpen} setRefresh={setRefresh} refresh={refresh} />
-				{ smallScreen && <Drawer open={drawerState} anchor="left" onClose={toggleDrawerState}>
+				<Header Hamburger={smallScreen} HamburgerClickEvent={() => toggleDrawerState(true)} setSearchBoxOpen={setSearchBoxOpen} setRefresh={setRefresh} refresh={refresh} />
+				{ smallScreen && <SwipeableDrawer open={drawerState} anchor="left" onClose={() => toggleDrawerState(false)} onOpen={() => toggleDrawerState(true)}>
 					<ContextMenu setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} />
-				</Drawer> }
+				</SwipeableDrawer> }
 				<table className={classes.homeOuter}>
 					<tbody>
 						<tr>

@@ -154,6 +154,9 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 						resolve(true);
 					}
 				});
+			} else {
+				setLoading(false);
+				resolve(true);
 			}
 		});
 	}

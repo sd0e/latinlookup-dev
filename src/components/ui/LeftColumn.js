@@ -9,7 +9,7 @@ import SubWord from './SubWord';
 import GetColorVariable from '../../scripts/GetColorVariable';
 import GetColorMode from '../../scripts/GetColorMode';
 
-export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord, setAboutBoxOpen }) {
+export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, smallScreen, removeWord, setAboutBoxOpen, refresh }) {
 	const theme = createTheme({
 		components: {
 			MuiIconButton: {
@@ -50,9 +50,9 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 								const selected = word[1];
 								word = word[0];
 								if (!word.includes('^')) {
-									return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
+									return <HeadWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} refresh={refresh} />
 								} else {
-									return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} />
+									return <SubWord Word={word} Click={ClickEvent} key={`container-${word}`} Selected={selected} removeWord={removeWord} refresh={refresh} />
 								}
 							}) }
 						</div>

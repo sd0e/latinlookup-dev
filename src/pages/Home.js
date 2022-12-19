@@ -175,7 +175,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 			changeCurrentWord(word);
 		}
 		if (smallScreen) toggleDrawerState();
-	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} setAboutBoxOpen={setAboutBoxOpen} />
+	}} WordList={wordsList} Selected={currentWord} setSearchBoxOpen={setSearchBoxOpen} smallScreen={smallScreen} removeWord={removeWord} setAboutBoxOpen={setAboutBoxOpen} refresh={refresh} />
 
 	return (
 		<ThemeProvider theme={theme}>

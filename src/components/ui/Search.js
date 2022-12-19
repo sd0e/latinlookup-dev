@@ -5,7 +5,7 @@ import GetColorMode from "../../scripts/GetColorMode";
 
 import classes from './Search.module.css';
 
-export default function Search({ submit, setSearchBoxOpen }) {
+export default function Search({ submit, setSearchBoxOpen, refresh}) {
     const [searchBoxContent, setSearchBoxContent] = useState('');
 
     const theme = createTheme({
@@ -48,8 +48,8 @@ export default function Search({ submit, setSearchBoxOpen }) {
                 <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" autoCapitalize="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
                 <div className={classes.buttonContainer}>
                     <Stack direction="row" spacing={2}>
-                        <Button onClick={() => submit(searchBoxContent)} variant="outlined">Lookup</Button>
-                        <Button onClick={() => setSearchBoxOpen(false)} variant="outlined" color="warning">Cancel</Button>
+                        <Button onClick={() => submit(searchBoxContent)} variant="outlined" key={`lookup-${refresh}`}>Lookup</Button>
+                        <Button onClick={() => setSearchBoxOpen(false)} variant="outlined" color="warning" key={`exit-${refresh}`}>Cancel</Button>
                     </Stack>
                 </div>
             </div>

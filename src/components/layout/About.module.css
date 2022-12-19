@@ -11,7 +11,7 @@
     display: block;
     font-weight: 400;
     margin-top: 0.2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .aboutVersionNumber {
@@ -36,4 +36,15 @@
 	font-weight: 400;
 	font-size: 0.9rem;
 	cursor: pointer;
+}
+
+.aboutTopMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.aboutIconButtonIcon {
+	color: var(--muted-text);
 }

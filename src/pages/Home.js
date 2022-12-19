@@ -8,6 +8,7 @@ import classes from './Home.module.css';
 import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
 import GetColorVariable from '../scripts/GetColorVariable';
+import ExtractLatinHTML from '../scripts/ExtractLatinHTML';
 
 export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen, setRefresh, refresh }) {
 	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
@@ -89,35 +90,70 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 		})
 	}
 
-	const addWord = word => {
-		let wordFound = false;
+	const swapCapitalizations = word => {
+		if (word.charAt(0).toLowerCase() === word.charAt(0)) {
+			word = word.charAt(0).toUpperCase() + word.substring(1)
+		} else {
+			word = word.charAt(0).toLowerCase() + word.substring(1)
+		}
 
-		// Sets the current word to it if it already exists
-		for (let idx = 0; idx < wordsList.length; idx++) {
-			const wordArray = wordsList[idx];
-			if (wordArray[0] === word) {
-				wordFound = true;
-				changeCurrentWord(word);
-			} else if (wordArray[3] === word) {
-				wordFound = true;
-				changeCurrentWord(wordArray[0]);
+		return word;
+	}
+
+	const addWord = (word, isRedo = false) => {
+		return new Promise(resolve => {
+			let wordFound = false;
+
+			// Sets the current word to it if it already exists
+			for (let idx = 0; idx < wordsList.length; idx++) {
+				const wordArray = wordsList[idx];
+				if (wordArray[0] === word) {
+					wordFound = true;
+					changeCurrentWord(word);
+				} else if (wordArray[3] === word) {
+					wordFound = true;
+					changeCurrentWord(wordArray[0]);
+				}
 			}
-		}
-		
-		// If the word isn't found, it adds the new word then switches to it
-		if (!wordFound) {
-			setLoading(true);
-			const displayWord = word.includes('^') ? word.substring(1) : word;
+			
+			// If the word isn't found, it adds the new word then switches to it
+			if (!wordFound) {
+				setLoading(true);
+				const displayWord = word.includes('^') ? word.substring(1) : word;
 
-			XHRGetRequest(`https://crossrun.onrender.com/https://en.wiktionary.org/api/rest_v1/page/html/${displayWord}`, 'document').then(res => {
-				window[displayWord] = res;
-				let tempWordsList = wordsList;
-				wordsList.push([word, true, true, displayWord]);
-				setWordsList(tempWordsList);
-				addWord(displayWord);
-				setLoading(false);
-			});
-		}
+				XHRGetRequest(`https://crossrun.onrender.com/https://en.wiktionary.org/api/rest_v1/page/html/${displayWord}`, 'document').then(res => {
+					if (res !== null) {
+						const LatinHTML = ExtractLatinHTML(res.documentElement.outerHTML);
+						if (LatinHTML[1] === false) res = null;
+					}
+					
+					if (res === null && !isRedo) {
+						// word not found; resubmit with opposite capitalization
+						addWord(swapCapitalizations(word), true).then(status => {
+							if (status === false) {
+								window[displayWord] = res;
+								let tempWordsList = wordsList;
+								wordsList.push([word, true, true, displayWord]);
+								setWordsList(tempWordsList);
+								addWord(displayWord);
+								setLoading(false);
+								resolve(true);
+							}
+						});
+					} else if (res === null && isRedo) {
+						resolve(false);
+					} else {
+						window[displayWord] = res;
+						let tempWordsList = wordsList;
+						wordsList.push([word, true, true, displayWord]);
+						setWordsList(tempWordsList);
+						addWord(displayWord);
+						setLoading(false);
+						resolve(true);
+					}
+				});
+			}
+		});
 	}
 	
 	window['addWord'] = addWord;
@@ -155,7 +191,6 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 		});
 
 		if (wordInfo !== null) tempWordsList = tempWordsList.filter(item => item !== wordInfo);
-		console.log(defaultWordState);
 
 		setWordsList(tempWordsList);
 

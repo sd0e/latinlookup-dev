@@ -49,7 +49,6 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 
 	const toggleDrawerState = (val = !drawerState) => {
 		setDrawerState(val);
-		console.log(val);
 	}
 
 	var lastUpdate = new Date().getTime();

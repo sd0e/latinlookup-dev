@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { createTheme, SwipeableDrawer, ThemeProvider } from '@mui/material';
+import { createTheme, IconButton, SwipeableDrawer, ThemeProvider } from '@mui/material';
+import { OpenInNew } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 import LeftColumn from '../components/ui/LeftColumn';
@@ -9,6 +10,7 @@ import XHRGetRequest from '../scripts/XHRGetRequest';
 import FormatCurrentElements from '../scripts/FormatCurrentElements';
 import GetColorVariable from '../scripts/GetColorVariable';
 import ExtractLatinHTML from '../scripts/ExtractLatinHTML';
+import GetColorMode from '../scripts/GetColorMode';
 
 export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen, setRefresh, refresh }) {
 	const defaultWordState = ['Enter a word', false, true, 'Enter a word'];
@@ -29,10 +31,25 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 				styleOverrides: {
 					paper: {
 						background: GetColorVariable(document, '--bg'),
-						padding: "1.5rem"
+						padding: "1.5rem",
+					}
+				}
+			},
+			MuiIconButton: {
+				styleOverrides: {
+					root: {
+						width: "2rem",
+						height: "2rem",
+						lineHeight: "1.3rem",
+						verticalAlign: "middle",
+						cursor: "pointer",
+						color: GetColorVariable(document, '--muted-text'),
 					}
 				}
 			}
+		},
+		palette: {
+			mode: GetColorMode(document)
 		}
 	});
 
@@ -236,11 +253,16 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 								</div>
 								<div className={classes.mainContentOuter}>
 									<div className={classes.mainPage}>
-										<span className={classes.currWord}>{currentWord[3]}</span>
-										{currentWord[2] && currentWord[0] !== 'Enter a word' &&
+										<span className={classes.currWord}>
+											<span className={classes.currWordTitle}>{currentWord[3]}</span>
+											{ currentWord[2] && currentWord[0] !== 'Enter a word' ? <IconButton onClick={() => window.open(`https://en.wiktionary.org/wiki/${currentWord[3]}#Latin`)} aria-label="Open original page in new tab"><OpenInNew fontSize="small" key={`open-in-new-${refresh}`} /></IconButton> : null }
+										</span>
+										{currentWord[2] && currentWord[0] !== 'Enter a word' ?
 											<div className={classes.wordInfoInner} style={{ maxWidth: smallScreen ? 'calc(100vw - 6rem)' : 'calc(100vw - 21rem)' }}>
 												<FormatCurrentElements HTML={window[currentWord[3]]} />
 											</div>
+										:
+											null
 										}
 									</div>
 								</div>

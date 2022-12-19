@@ -23,7 +23,7 @@ const theme = createTheme({
 export default function SearchBox({ setSearchBoxOpen, onClick }) {
 	return (
 		<ThemeProvider theme={theme}>
-			<Button fullWidth onClick={() => {
+			<Button fullWidth aria-label="Open search box" onClick={() => {
 				onClick();
 				setSearchBoxOpen(true);
 			}}>

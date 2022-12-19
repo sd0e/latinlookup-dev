@@ -33,7 +33,7 @@ export default function Header({ Hamburger, HamburgerClickEvent, setSearchBoxOpe
 		<ThemeProvider theme={theme}>
 			<div className={classes.headerOuter}>
 				<div className={classes.headerContentFlex}>
-					{ Hamburger && <IconButton className={classes.headerHamburger} onClick={HamburgerClickEvent}><Menu fontSize="small" key={refresh} className={classes.headerIcon} /></IconButton> }
+					{ Hamburger && <IconButton className={classes.headerHamburger} onClick={HamburgerClickEvent} aria-label="Open navigation menu"><Menu fontSize="small" key={refresh} className={classes.headerIcon} /></IconButton> }
 					<span className={classes.headerTitle} style={{ marginLeft: Hamburger ? '1.5rem' : '0rem' }}>
 						Latin Lookup
 						<div className={classes.versionHolder}>
@@ -45,10 +45,10 @@ export default function Header({ Hamburger, HamburgerClickEvent, setSearchBoxOpe
 					<IconButton className={classes.headerHamburger} onClick={() => {
 						SwitchColorTheme();
 						setRefresh(Math.random());
-					}}><ThemeChangeIcon fontSize="small" className={classes.headerIcon} /></IconButton>
+					}} aria-label="Toggle theme"><ThemeChangeIcon fontSize="small" className={classes.headerIcon} /></IconButton>
 					<IconButton className={classes.headerHamburger} onClick={() => {
 						setSearchBoxOpen(true);
-					}}><SearchOutlined fontSize="small" className={classes.headerIcon} /></IconButton>
+					}} aria-label="Open search box"><SearchOutlined fontSize="small" className={classes.headerIcon} /></IconButton>
 				</div>
 			</div>
 		</ThemeProvider>

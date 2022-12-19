@@ -43,7 +43,7 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 					<div>
 						{ smallScreen ? <div className={classes.mobileLeftColumnHolderHeader}>
 							<SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} />
-							<IconButton onClick={ClickEvent} className={classes.mobileExitNav}><Close className={classes.iconButtonIcon} /></IconButton>
+							<IconButton onClick={ClickEvent} className={classes.mobileExitNav} aria-label="Close navigation menu"><Close className={classes.iconButtonIcon} /></IconButton>
 						</div> : <SearchBox setSearchBoxOpen={setSearchBoxOpen} onClick={ClickEvent} /> }
 						<div className={classes.wordList}>
 							{WordList.map(word => {
@@ -58,7 +58,7 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 						</div>
 					</div>
 					<div>
-						<button onClick={openAboutBox} className={classes.bottomItems}>About</button>
+						<button onClick={openAboutBox} className={classes.bottomItems} aria-label="Open About menu">About</button>
 					</div>
 				</div>
 			</div>

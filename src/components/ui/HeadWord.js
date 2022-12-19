@@ -47,10 +47,10 @@ export default function HeadWord({ Word, Selected, Click, removeWord, refresh })
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click}>
+				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click} aria-label={`Open word information for ${Word}`}>
 					<span id={id} key={`word-${refresh}`}>{Word}</span>
 				</Button>
-				<IconButton aria-label="remove" size="small" id={id} onClick={() => removeWord(Word)}>
+				<IconButton size="small" id={id} onClick={() => removeWord(Word)} aria-label={`Remove word ${Word} from list`}>
 					<RemoveCircleOutline fontSize="inherit" id={id} key={`icon-${refresh}`} />
 				</IconButton>
 			</div>

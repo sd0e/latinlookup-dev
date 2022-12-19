@@ -5,7 +5,7 @@ import GetColorMode from "../../scripts/GetColorMode";
 
 import classes from './Search.module.css';
 
-export default function Search({ submit, setSearchBoxOpen, refresh}) {
+export default function Search({ submit, setSearchBoxOpen, refresh }) {
     const [searchBoxContent, setSearchBoxContent] = useState('');
 
     const theme = createTheme({
@@ -45,11 +45,11 @@ export default function Search({ submit, setSearchBoxOpen, refresh}) {
                         Search
                     </span>
                 </span>
-                <TextField fullWidth label="Enter Words" autoFocus autoCorrect="off" autoComplete="off" autoCapitalize="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
+                <TextField fullWidth label="Enter Words" aria-label="Enter Words"  autoFocus autoCorrect="off" autoComplete="off" autoCapitalize="off" onChange={e => setSearchBoxContent(e.target.value)} value={searchBoxContent} />
                 <div className={classes.buttonContainer}>
                     <Stack direction="row" spacing={2}>
-                        <Button onClick={() => submit(searchBoxContent)} variant="outlined" key={`lookup-${refresh}`}>Lookup</Button>
-                        <Button onClick={() => setSearchBoxOpen(false)} variant="outlined" color="warning" key={`exit-${refresh}`}>Cancel</Button>
+                        <Button onClick={() => submit(searchBoxContent)} variant="outlined" key={`lookup-${refresh}`} aria-label="Search for word">Lookup</Button>
+                        <Button onClick={() => setSearchBoxOpen(false)} variant="outlined" color="warning" key={`exit-${refresh}`} aria-label="Close search box">Cancel</Button>
                     </Stack>
                 </div>
             </div>

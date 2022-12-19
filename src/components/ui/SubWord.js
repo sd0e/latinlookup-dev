@@ -46,13 +46,13 @@ export default function SubWord({ Word, Selected, Click, removeWord, refresh }) 
 	return (
 		<ThemeProvider theme={theme}>
 			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click} fullWidth>
+				<Button style={Selected ? { backgroundColor: "rgba(102, 102, 102, 0.1)" } : null} id={id} onClick={Click} aria-label={`Open word information for ${Word}`} fullWidth>
 					<div style={{ display: "flex", alignItems: "center" }} id={id} key={`word-${refresh}`}>
 						<SubdirectoryArrowRight fontSize="small" style={{ marginRight: "0.5rem" }} id={id} key={`subdirectory-${refresh}`} />
 						{Word.substr(1)}
 					</div>
 				</Button>
-				<IconButton aria-label="remove" size="small" id={id} onClick={() => removeWord(Word)}>
+				<IconButton size="small" id={id} onClick={() => removeWord(Word)} aria-label={`Remove word ${Word} from list`}>
 					<RemoveCircleOutline fontSize="inherit" id={id} key={`icon-${refresh}`} />
 				</IconButton>
 			</div>

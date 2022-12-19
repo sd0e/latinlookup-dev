@@ -42,7 +42,7 @@ export default function About({ setAboutBoxOpen, refresh }) {
                             </span>
                         </div>
                         <div>
-                            <IconButton onClick={() => setAboutBoxOpen(false)} key={`about-exit-button-${refresh}`}><Close className={classes.aboutIconButtonIcon} fontSize="small" /></IconButton>
+                            <IconButton aria-label="Close About menu" onClick={() => setAboutBoxOpen(false)} key={`about-exit-button-${refresh}`}><Close className={classes.aboutIconButtonIcon} fontSize="small" /></IconButton>
                         </div>
                     </div>
                     <span className={classes.aboutDescription}>{appInfo.LONG_DESCRIPTION}</span>

@@ -1,8 +1,11 @@
 import React from 'react';
+
 import ExtractLatinHTML from './ExtractLatinHTML';
 
 export default function FormatCurrentElements({ HTML }) {
 	let formattedHTML = HTML;
+
+	console.log(formattedHTML);
 
 	// Get only the Latin translations
 	formattedHTML = ExtractLatinHTML(formattedHTML.documentElement.outerHTML);
@@ -38,18 +41,26 @@ export default function FormatCurrentElements({ HTML }) {
 
 		if (currElement.tagName.toLowerCase() === 'a') {
 			if (
-				currElement.parentElement.lang.toLowerCase() === 'la'
+				currElement.parentElement.lang.toLowerCase() === 'la' && !currElement.rel.includes('ExtLink') && currElement.rel.includes('WikiLink')
 			) {
 				currElement.href = `javascript:window['addWord']('^${currElement.title}')`;
 				currElement.style.color = '#6190E6';
 			} else {
-				currElement.removeAttribute('href');
+				if (currElement.rel.includes('ExtLink')) {
+					currElement.target = '_blank';
+					currElement.style.color = '#6190E6';
+					currElement.rel += ' noreferrer'
+				} else {
+					currElement.removeAttribute('href');
+				}
 			}
 		}
 	}
 
 	// Set the formattedHTML to the string value of the HTML
 	formattedHTML = htmlBody.innerHTML;
+
+	console.log(formattedHTML);
 
 	return (
 		<div dangerouslySetInnerHTML={{ __html: formattedHTML }}></div>

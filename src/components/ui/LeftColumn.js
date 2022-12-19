@@ -38,7 +38,7 @@ export default function LeftColumn({ ClickEvent, WordList, setSearchBoxOpen, sma
 
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={classes.leftColumn} style={{ paddingRight: smallScreen ? '2rem' : '0rem' }}>
+			<div className={classes.leftColumn}>
 				<div className={classes.leftColumnContentDivider}>
 					<div>
 						{ smallScreen ? <div className={classes.mobileLeftColumnHolderHeader}>

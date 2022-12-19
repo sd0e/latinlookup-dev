@@ -4,6 +4,7 @@
 	--muted-text: rgba(11, 11, 11, 0.8);
 	--border: rgba(11, 11, 11, 0.05);
 	--loading: rgba(11, 11, 11, 0.2);
+	--table: #c5c5c5;
 }
 
 html {

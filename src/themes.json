@@ -5,7 +5,8 @@
             "--text": "#f2f2f2",
             "--muted-text": "rgba(242, 242, 242, 0.8)",
             "--border": "rgba(242, 242, 242, 0.05)",
-            "--loading": "rgba(242, 242, 242, 0.2)"
+            "--loading": "rgba(242, 242, 242, 0.2)",
+            "--table": "#383838"
         },
         "MODE": "dark"
     },
@@ -15,7 +16,8 @@
             "--text": "#111111",
             "--muted-text": "rgba(11, 11, 11, 0.8)",
             "--border": "rgba(11, 11, 11, 0.05)",
-            "--loading": "rgba(11, 11, 11, 0.2)"
+            "--loading": "rgba(11, 11, 11, 0.2)",
+            "--table": "#c5c5c5"
         },
         "MODE": "light"
     }

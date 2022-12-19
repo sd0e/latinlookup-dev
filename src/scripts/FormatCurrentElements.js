@@ -28,17 +28,19 @@ export default function FormatCurrentElements({ HTML }) {
 				currElement.remove();
 			}
 
-			const subheadingsList = ['Verb', 'Noun', 'Pronunciation', 'Etymology 1'];
+			if (currElement.tagName.toLowerCase() === 'h4' || currElement.tagName.toLowerCase() === 'h3' || currElement.tagName.toLowerCase() === 'h2') {
+				currElement.style.fontFamily = 'Merriweather';
+				currElement.style.fontWeight = '900';
+				if (currElement.tagName.toLowerCase() === 'h3') currElement.style.fontSize = '1.2rem';
+				currElement.style.filter = 'opacity(0.9)';
+				// `<span style="font-family: 'Merriweather'; font-weight: 900; font-size: 1.2rem; filter: opacity(0.9);">${subheading}</span>`;
+			}
 
-			subheadingsList.forEach(subheading => {
-				if (currElement.innerText === subheading) {
-					currElement.style.fontFamily = 'Merriweather';
-					currElement.style.fontWeight = '900';
-					currElement.style.fontSize = '1.2rem';
-					currElement.style.filter = 'opacity(0.9)';
-					// `<span style="font-family: 'Merriweather'; font-weight: 900; font-size: 1.2rem; filter: opacity(0.9);">${subheading}</span>`;
-				}
-			});
+			if (currElement.tagName.toLowerCase() === 'th' || currElement.tagName.toLowerCase() === 'td' || currElement.tagName.toLowerCase() === 'table') {
+				currElement.style.border = '2px solid var(--table)';
+				currElement.style.borderCollapse = 'collapse';
+				currElement.style.padding = '0.4rem';
+			}
 
 			if (currElement.tagName.toLowerCase() === 'a') {
 				if (

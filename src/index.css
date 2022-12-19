@@ -29,3 +29,11 @@ body {
 	background-color: var(--bg) !important;
 	color: var(--text) !important;
 }
+
+*::-webkit-scrollbar {
+	width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: var(--loading);
+}

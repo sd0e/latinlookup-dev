@@ -5,7 +5,6 @@ import { DarkModeOutlined, LightModeOutlined, Menu, SearchOutlined } from '@mui/
 import classes from './Header.module.css';
 import SwitchColorTheme from '../../scripts/SwitchColorTheme';
 import GetColorMode from '../../scripts/GetColorMode';
-import appInfo from '../../appInfo.json';
 
 export default function Header({ Hamburger, HamburgerClickEvent, setSearchBoxOpen, setRefresh, refresh }) {
 	const ThemeChangeIcon = GetColorMode(document) === 'dark' ? LightModeOutlined : DarkModeOutlined;
@@ -37,7 +36,7 @@ export default function Header({ Hamburger, HamburgerClickEvent, setSearchBoxOpe
 					<span className={classes.headerTitle} style={{ marginLeft: Hamburger ? '1.5rem' : '0rem' }}>
 						Latin Lookup
 						<div className={classes.versionHolder}>
-							<span className={classes.versionName}>{ appInfo.VERSION_NUMBER }</span>
+							<span className={classes.versionName}>α</span>
 						</div>
 					</span>
 				</div>

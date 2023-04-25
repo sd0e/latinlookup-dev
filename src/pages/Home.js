@@ -134,7 +134,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 					changeCurrentWord(wordArray[0]);
 				}
 			}
-			
+
 			// If the word isn't found, it adds the new word then switches to it
 			if (!wordFound) {
 				setLoading(true);
@@ -145,7 +145,7 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 						const LatinHTML = ExtractLatinHTML(res.documentElement.outerHTML);
 						if (LatinHTML[1] === false) res = null;
 					}
-					
+
 					if (res === null && !isRedo) {
 						// word not found; resubmit with opposite capitalization
 						addWord(swapCapitalizations(word), true).then(status => {
@@ -177,14 +177,15 @@ export default function Home({ searchBoxOpen, setSearchBoxOpen, setAboutBoxOpen,
 			}
 		});
 	}
-	
+
 	window['addWord'] = addWord;
 
 	useEffect(() => {
 		if (searchBoxOpen !== true && searchBoxOpen !== false && searchBoxOpen !== '' && typeof searchBoxOpen === 'string') {
-			const words = searchBoxOpen.split(' ');
+			const words = searchBoxOpen.trim().split(' ');
 			words.forEach(word => {
-				window['addWord'](word);
+                if (word)
+					window['addWord'](word);
 			});
 		}
 	}, [searchBoxOpen]);
